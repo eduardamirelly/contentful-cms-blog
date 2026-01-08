@@ -1,3 +1,5 @@
+![demo](.github/demo-video.mov?style=flat)
+
 <p align="center">
   <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=F25551&labelColor=241722">
   <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/eduardamirelly/contentful-cms-blog?color=F35551&labelColor=241722">

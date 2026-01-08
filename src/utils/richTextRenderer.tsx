@@ -2,6 +2,7 @@ import React from "react";
 import { Options } from "@contentful/rich-text-react-renderer";
 import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import { H1, H2, H3, H4, H5, H6, P, Code } from "@/components/typography";
+import { EmbeddedAsset } from "@/components/ui/EmbeddedAsset";
 
 export const richTextRenderOptions: Options = {
   renderMark: {
@@ -51,5 +52,9 @@ export const richTextRenderOptions: Options = {
       </blockquote>
     ),
     [BLOCKS.HR]: () => <hr className="my-8 border-gray-200" />,
+    [BLOCKS.EMBEDDED_ASSET]: (node) => {
+      const asset = node.data?.target;
+      return asset ? <EmbeddedAsset asset={asset} /> : null;
+    },
   },
 };

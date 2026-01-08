@@ -1,4 +1,4 @@
-![demo](.github/demo-video.mov?style=flat)
+![Demo Video](.github/demo-video.gif)
 
 <p align="center">
   <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=F25551&labelColor=241722">

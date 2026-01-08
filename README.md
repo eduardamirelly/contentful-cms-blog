@@ -1,7 +1,9 @@
+![cover](.github/preview.png?style=flat)
+
 <p align="center">
-  <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=F25551&labelColor=241722">
-  <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/eduardamirelly/contentful-cms-blog?color=F35551&labelColor=241722">
-  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/eduardamirelly/contentful-cms-blog?color=F35551&labelColor=241722">
+  <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=3B82F6&labelColor=1E293B">
+  <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/eduardamirelly/contentful-cms-blog?color=3B82F6&labelColor=1E293B">
+  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/eduardamirelly/contentful-cms-blog?color=3B82F6&labelColor=1E293B">
 </p>
 
 <p align="center">
@@ -26,7 +28,7 @@ A modern blog application built with Next.js and Contentful CMS. Features rich t
 
 ## 🚀 Deploy
 
--   [ ] Vercel
+-   [x] Github Pages
 
 ## 🏁 Running the project
 

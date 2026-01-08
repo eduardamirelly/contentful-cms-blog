@@ -1,83 +1,63 @@
-import {
-  H1,
-  H2,
-  H3,
-  H4,
-  H5,
-  P,
-  Lead,
-  Small,
-  Muted,
-  Code,
-} from "../../components/typography";
-import Card from "@/components/card";
+"use client";
 
-export default function Homepage() {
+import React from "react";
+import { H1, Lead, Small } from "@/components/typography";
+import { BlogPostCard } from "@/components/blog";
+import {
+  LoadingState,
+  ErrorState,
+  EmptyState,
+} from "@/components/ui/LoadingState";
+import { useBlogPosts } from "@/hooks/useBlogPosts";
+import { CONTENT } from "@/constants/content";
+
+export default function Homepage(): React.ReactElement {
+  const { blogPosts, loading, error, refetch } = useBlogPosts();
+  console.log(blogPosts);
+
+  const renderContent = (): React.ReactElement => {
+    if (loading) {
+      return <LoadingState message={CONTENT.LOADING.BLOG_POSTS} />;
+    }
+
+    if (error) {
+      return <ErrorState message={error} onRetry={refetch} />;
+    }
+
+    if (blogPosts.length === 0) {
+      return (
+        <EmptyState
+          title="No Blog Posts Found"
+          description={CONTENT.ERRORS.CONTENTFUL_CONFIG}
+        />
+      );
+    }
+
+    return (
+      <section className="space-y-8" aria-label="Blog posts">
+        {blogPosts.map((post) => (
+          <BlogPostCard key={post.sys.id} post={post} />
+        ))}
+      </section>
+    );
+  };
+
   return (
     <div className="min-h-screen w-full bg-background">
       <div className="container mx-auto px-4 py-16 max-w-4xl">
-        {/* Hero Section */}
-        <div className="text-center mb-16">
-          <H1>Contentful CMS Blog</H1>
-          <Lead className="mt-4">
-            A beautifully designed blog with comprehensive typography system
-            built with Next.js and shadcn UI.
+        <header className="text-center mb-16">
+          <H1 className="mb-4">{CONTENT.HERO.TITLE}</H1>
+          <Lead className="text-muted-foreground max-w-2xl mx-auto">
+            {CONTENT.HERO.SUBTITLE}
           </Lead>
-        </div>
+        </header>
 
-        {/* Sample Blog Content */}
-        <Card className="mb-16">
-          <Card.Header>
-            <Card.Title>
-              <H2 className="mb-0">Sample Blog Post</H2>
-            </Card.Title>
-            <Card.Description>
-              <Muted>Published on January 8, 2026</Muted>
-            </Card.Description>
-          </Card.Header>
+        <main>{renderContent()}</main>
 
-          <Card.Content>
-            <Lead className="mb-6">
-              This is how a typical blog post would look using our typography
-              system. The lead paragraph draws attention and provides a
-              compelling introduction.
-            </Lead>
-
-            <div className="space-y-6">
-              <section>
-                <H3>Introduction</H3>
-                <P>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris.
-                </P>
-              </section>
-
-              <section>
-                <H4>Key Benefits</H4>
-                <P>
-                  Duis aute irure dolor in reprehenderit in voluptate velit esse
-                  cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                  occaecat cupidatat non proident.
-                </P>
-              </section>
-
-              <section>
-                <H5>Technical Details</H5>
-                <P>
-                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                  accusantium doloremque laudantium. Use{" "}
-                  <Code>npm install</Code> to get started with the project.
-                </P>
-              </section>
-            </div>
-          </Card.Content>
-        </Card>
-
-        {/* Footer */}
-        <footer className="text-center border-t pt-8">
-          <Small>Built with Next.js, shadcn/ui, and Tailwind CSS</Small>
+        <footer className="text-center border-t border-border pt-8 mt-16">
+          <Small className="text-muted-foreground">
+            {CONTENT.FOOTER.BUILT_WITH}
+          </Small>
         </footer>
       </div>
     </div>

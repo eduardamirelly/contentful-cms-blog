@@ -10,6 +10,7 @@ const typographyVariants = cva("text-foreground", {
       h3: "scroll-m-20 text-2xl font-semibold tracking-tight",
       h4: "scroll-m-20 text-xl font-semibold tracking-tight",
       h5: "scroll-m-20 text-lg font-semibold tracking-tight",
+      h6: "scroll-m-20 text-base font-semibold tracking-tight",
       p: "leading-7 [&:not(:first-child)]:mt-6",
       lead: "text-xl text-muted-foreground",
       large: "text-lg font-semibold",
@@ -45,6 +46,8 @@ const Typography = React.forwardRef<HTMLElement, TypographyProps>(
           return "h4";
         case "h5":
           return "h5";
+        case "h6":
+          return "h6";
         case "blockquote":
           return "blockquote";
         case "code":
@@ -106,6 +109,14 @@ const H5 = React.forwardRef<
   <Typography ref={ref} as="h5" variant="h5" className={className} {...props} />
 ));
 H5.displayName = "H5";
+
+const H6 = React.forwardRef<
+  HTMLHeadingElement,
+  Omit<TypographyProps, "variant" | "as">
+>(({ className, ...props }, ref) => (
+  <Typography ref={ref} as="h6" variant="h6" className={className} {...props} />
+));
+H6.displayName = "H6";
 
 const P = React.forwardRef<
   HTMLParagraphElement,
@@ -220,6 +231,7 @@ export {
   H3,
   H4,
   H5,
+  H6,
   P,
   Lead,
   Large,
